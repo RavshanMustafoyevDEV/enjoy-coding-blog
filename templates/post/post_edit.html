@@ -1,0 +1,20 @@
+{%extends 'base.html'%}
+{% block content %}
+{% if user.is_authenticated %}
+<center>
+<h1>Edit Post</h1>
+
+<form action="" method="POST" enctype="multipart/form-data" class="form-control">{% csrf_token %}
+    {{ form.media }}
+    {{ form.as_p }}
+
+    <br><br>
+
+    <input type="submit" value="Yangilash" class="btn btn-outline-succes">
+    <a href="{% url 'homeView' %}" class="btn btn-outline-danger" >Bekor qilish</a>
+</form>
+
+
+</center>
+{% endif %}
+{% endblock %}

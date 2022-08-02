@@ -1,0 +1,136 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="{% static 'conf/icon.svg' %}">
+    <title>Enjoy Coding - IT blog sahifasi</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
+
+
+    <style>
+        *{padding: 0;margin: 0;box-sizing: border-box;position: relative;}
+        
+        main{
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+        }
+        .content{
+            position: absolute;
+            margin-left: 300px;
+            height: 100%;
+            width: calc(100% - 300px);
+        }
+        .nav-link{transition: 0.3s all;}
+        .nav-link:hover{
+          background: rgba(0, 0, 0, 0.192);
+          cursor: cursor;
+        }
+        
+
+    </style>
+
+  </head>
+  <body>
+    
+
+    <main class="d-flex justify-content-between">
+        <div class="sidebar position-fixed d-flex flex-column flex-shrink-0 p-3 " style="width: 280px;height: 100vh; background: rgba(0, 0, 0, 0.15);">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+              <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+              <span class="fs-4"><strong>Enjoy Coding</strong></span>
+              
+            </a><center><small class="text-muted"> v1.0</small></center>
+            <hr>
+            <ul class="nav nav-pills flex-column mb-auto">
+
+              <li class="nav-item">
+                <a href="{% url 'homeView' %}" class="nav-link text-dark " aria-current="">
+                    <i class="bi bi-house"></i>
+                  Home
+                </a>
+              </li>
+
+              <li>
+                <a href="{% url 'aboutView' %}" class="nav-link text-dark">
+                    <i class="bi bi-info-circle"></i>
+                  Biz haqimizda
+                </a>
+              </li>
+
+              <li>
+                <a href="{% url 'postsView' %}" class="nav-link text-dark">
+                    <i class="bi bi-file-earmark-post"></i>
+                  Postlar
+                </a>
+              </li>
+
+              {% if user.is_authenticated %}
+              <li>
+                <a href="{% url 'blogCreate'%}" class="nav-link text-dark">
+                  <i class="bi bi-plus-square"></i>
+                  Yangi Post
+                </a>
+              </li>
+
+              {% endif %}
+
+
+            </ul>
+            <center>
+            <small class="text-muted"><i class="bi bi-terminal"></i> | By Ravshan Mustafoyev</small>
+            </center>
+            <hr>
+            <div class="dropdown">
+              <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://td.uz/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                <strong class="text-dark">{{user.first_name}} {{user.last_name}}</strong>
+              </a>
+
+              {% if user.is_authenticated %}
+              <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                
+              <li><a class="dropdown-item" href="{% url 'logout' %}">Sign out</a></li>
+              </ul>
+
+              {% else %}
+              <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                <li><a class="dropdown-item" href="{%url 'login'%}">Login</a></li>
+              </ul>
+
+              {% endif %}
+
+            </div>
+          </div>
+
+          <div class="content">
+                {% block content %}
+                    <!-- Base Html (Boshqa shablonlar shu yerda bo'ladi) -->
+
+                    <!-- 
+                        % extends 'base.html' %
+
+                    % block content %
+                        
+                    % endblock %
+                    -->
+                {% endblock %}
+
+          </div>
+    </main>
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+
+
+  </body>
+</html>

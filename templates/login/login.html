@@ -1,0 +1,59 @@
+{% extends 'base.html'%}
+{% block content %}
+
+<style>
+    .login_form{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin-top: 100px;
+    }
+
+    .login_form form input{
+        margin: 10px 0;
+    }
+</style>
+
+
+<main class="login_form form-signin w-40">
+    <form action="" method="POST">{% csrf_token %}
+
+      <h1 class="h3 mb-3 fw-normal">Admin | Login</h1>
+  
+      <div class="form-floating">
+        <input type="text" class="form-control" name="login" placeholder="Login">
+        <label for="floatingInput">Login</label>
+      </div>
+      <div class="form-floating">
+        <input type="password" class="form-control" name="password" placeholder="Password">
+        <label for="floatingPassword">Password</label>
+      </div>
+
+      {% if messages is not None %}
+
+      {% for message in messages %}
+        
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>{{message}}</strong>
+        
+      </div>
+      
+      {% endfor %}
+        
+
+        {% else %}
+        {% endif %}
+  
+      
+      <button class="w-100 btn btn-lg btn-primary" type="submit">Log In</button>
+      <p class="mt-5 mb-3 text-muted">© Enjoy Coding</p>
+    </form>
+  </main>
+
+
+
+
+
+
+{% endblock %}

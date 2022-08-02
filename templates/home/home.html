@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    .post-content{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+</style>
+
+<h1 style="text-align: center;margin: 10px 0;">Home</h1>
+
+<div class="post-content">
+    {% for post in posts %}
+
+      <div class="card" style="width: 18rem;margin: 20px;">
+       
+        {% if post.post_img %}
+        <img src="{{ post.post_img.url }}" class="card-img-top" alt="...">
+
+        {% else %}
+        <img src="https://static.thenounproject.com/png/1527904-200.png" class="card-img-top" alt="...">
+        {% endif %}
+
+        <div class="card-body">
+          <h5 class="card-title">{{ post.post_title }}</h5>
+          <p class="card-text"></p>
+
+
+          <a href="{% url 'postView' post.pk %}" class="btn btn-outline-secondary">Batafsil</a>
+
+
+        </div>
+      </div>
+  
+
+
+{% endfor %}
+</div>
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+

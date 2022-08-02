@@ -1,0 +1,29 @@
+{%extends 'base.html'%}
+{% block content %}
+{% if user.is_authenticated %}
+
+<center>
+    <br>
+    <h1>Yangi post</h1>
+    <br>
+
+
+
+    <form action="" method="POST" enctype="multipart/form-data" class="form-control">{% csrf_token %}
+        {{ form.media}}
+        {{ form.as_p }}
+
+        <br><br>
+        <input type="submit" value="Yuklash" class="btn btn-outline-succes">
+        <a href="{% url 'homeView' %}" class="btn btn-outline-danger" >Bekor qilish</a>
+    </form>
+
+
+
+
+    
+</center>
+
+{%endif%}
+
+{% endblock %}

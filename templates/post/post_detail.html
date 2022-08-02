@@ -1,0 +1,31 @@
+{%extends 'base.html'%}
+
+{% block content %}
+
+<style>
+    .card{
+        margin: 30px 100px ;
+    }
+</style>
+
+<h1 style="text-align: center;margin: 20px 0;">Postlar</h1>
+
+<div class="card mb-3">
+    <img src="{{post.post_img.url}}" class="card-img-top" alt="">
+    <div class="card-body">
+      <h1 class="card-title" style="font-weight: 500;"><strong>{{post.post_title}}</strong></h1><br>
+      <p class="card-text">{{ post.post_text|safe }}</p>
+      <p class="card-text"><small class="text-muted">
+        <i class="bi bi-calendar"></i> {{post.post_date}}
+      </small></p>
+
+      {% if user.is_authenticated %}
+      <a type="button" class="btn btn-outline-warning" href="{% url 'blog_edit' post.pk%}">Tahrirlash</a>
+      <a type="button" class="btn btn-outline-danger" href="{%url 'blog_delete' post.pk%}">O'chirish</a>
+
+      {% endif %}
+    </div>
+  </div>
+
+{%endblock%}
+

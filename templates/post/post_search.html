@@ -1,0 +1,57 @@
+{%extends 'base.html'%}
+{% block content %}
+
+
+
+
+      <form class="d-flex" role="search" method="get" style="width: 100%;display: flex;justify-content: center;margin: 10px 0;">
+        <input class="form-control" type="text" placeholder="Qidiruv..." aria-label="Search" name="q" value="{{q}}" style="width: 400px;">
+      </form>
+
+
+
+
+  <hr>
+
+  <style>
+    .post-content{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+</style>
+
+<h1 style="text-align: center;margin: 10px 0;">Postlar</h1>
+
+<div class="post-content">
+    {% for post in result %}
+
+      <div class="card" style="width: 18rem;margin: 20px;">
+       
+        {% if post.post_img %}
+        <img src="{{ post.post_img.url }}" class="card-img-top" alt="...">
+
+        {% else %}
+        <img src="https://static.thenounproject.com/png/1527904-200.png" class="card-img-top" alt="...">
+        {% endif %}
+
+        <div class="card-body">
+          <h5 class="card-title">{{ post.post_title }}</h5>
+          <p class="card-text"></p>
+
+
+          <a href="{% url 'postView' post.pk %}" class="btn btn-outline-secondary">Batafsil</a>
+
+
+        </div>
+      </div>
+
+      
+  
+
+
+{% endfor %}
+</div>
+
+
+{% endblock %}
